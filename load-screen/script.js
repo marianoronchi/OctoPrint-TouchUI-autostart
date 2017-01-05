@@ -6,7 +6,7 @@
 	var error = document.getElementById("error");
 	var port = ((window.navigator.userAgent.match(/P:([0-9]+)/g) || [""])[0].replace("P:", "")) || 5000;
 	var prefix = "http://localhost:"+port+"/";
-	var url = prefix + "plugin/touchui/ping";
+	var url = prefix + "plugin/EXOTouch/ping";
 	var pass = 0;
 	var retry = 0;
 	var checkTimeout;
@@ -31,14 +31,14 @@
 	content.onload = function() {
 		setTimeout(function() {
 			if (!hasPostMessage) {
-				setMsg("OctoPrint loaded without TouchUI", "Tap to retry", "error");
+				setMsg("OctoPrint cargado sin EXO Touch", "Toque para reintentar", "error");
 			}
 		}, 100);
 	}
 
 	document.addEventListener("click", function() {
 		if (document.body.className.indexOf("error") !== -1) {
-			setMsg("Connecting to TouchUI", "", "");
+			setMsg("Conectando con EXO Smart 3D Fab", "", "");
 			
 			pass = 0;
 			++retry;
@@ -54,7 +54,7 @@
 
 		switch(event.data) {
 			case 'loading':
-				setMsg("Loading TouchUI", "", "");
+				setMsg("Cargando EXO Smart 3D Fab", "", "");
 				
 				checkTimeout = setTimeout(function() {
 					setMsg("Startup failed..", "Tap to retry", "error");
@@ -95,7 +95,7 @@
 	}, false);
 
 	function reqListener () {
-		setMsg("Loading OctoPrint", "", "");
+		setMsg("Cargando EXO Smart by OctoPrint", "", "");
 		content.setAttribute("src", prefix);
 	}
 
@@ -104,7 +104,7 @@
 		//console.log("Pass: " + pass);
 
 		if(pass >= 30) {
-			setMsg("Connecting to TouchUI failed..", "", "error");
+			setMsg("Fallo la conexion..", "", "error");
 			return;
 		}
 
